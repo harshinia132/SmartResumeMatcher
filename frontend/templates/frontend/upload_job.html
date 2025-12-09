@@ -1,0 +1,46 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}Upload Job{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Upload Job Description</h2>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Job Title:</label>
+            <input type="text" name="title" id="title" class="form-control" placeholder="e.g., Embedded Systems Intern" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Job Description:</label>
+            <textarea name="description" id="description" class="form-control" rows="10" placeholder="Enter the job description, required skills, responsibilities, and qualifications..." required></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Post Job</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+    
+    <div class="mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h6>💡 Example Job Description:</h6>
+                <small class="text-muted">
+                    <strong>Embedded Systems Intern</strong><br>
+                    We are looking for an ECE student with strong programming skills in Python and C++. 
+                    Experience with Arduino and Raspberry Pi for embedded systems projects is required. 
+                    Knowledge of circuit design and PCB prototyping is preferred.<br>
+                    <strong>Required Skills:</strong> Python, C++, Arduino, Raspberry Pi, Circuit Design, PCB
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

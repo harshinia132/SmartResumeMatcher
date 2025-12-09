@@ -1,0 +1,27 @@
+{% extends "frontend/base.html" %}
+{% load static %}
+
+{% block title %}Home - AI Resume Matcher{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1>Welcome to AI-Powered Resume Shortlisting & Career Guidance Platform</h1>
+    <p class="lead mt-3">Upload your resume or post a job to get started.</p>
+
+    <div class="mt-4">
+        {% if user.is_authenticated %}
+            <a href="{% url 'upload_resume' %}" class="btn btn-primary btn-lg mx-2">Upload Resume</a>
+            <a href="{% url 'upload_job' %}" class="btn btn-success btn-lg mx-2">Post Job</a>
+            <a href="{% url 'match_page' %}" class="btn btn-warning btn-lg mx-2">Match Resume</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-lg mx-2">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary btn-lg mx-2">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-success btn-lg mx-2">Register</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

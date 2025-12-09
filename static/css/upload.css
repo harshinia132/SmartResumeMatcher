@@ -1,0 +1,118 @@
+/* Body & background */
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Navbar styling */
+.navbar {
+    width: 100%;
+    background-color: #f681c9;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
+    z-index: 1020; /* ensure navbar is above content */
+}
+
+/* Shadow for sticky navbar */
+.navbar.sticky-top {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+/* Navbar buttons */
+.navbar .btn {
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+/* Hover effects for all buttons */
+.navbar .btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Specific hover colors */
+.navbar .btn-info:hover { background-color: #0dcaf0 !important; color: #fff; }
+.navbar .btn-dark:hover { background-color: #212529 !important; color: #fff; }
+.navbar .btn-secondary:hover { background-color: #5c636a !important; color: #fff; }
+
+/* Center upload card */
+.upload-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px); /* leave space for navbar */
+}
+
+.container {
+    width: 450px;
+    text-align: center;
+}
+
+/* Page title */
+.page-title {
+    color: #fff;
+    font-size: 32px;
+    margin-bottom: 30px;
+    animation: fadeInDown 1s ease forwards;
+}
+
+/* Upload card */
+.upload-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.upload-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* File input */
+.input-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.input-group input[type="file"]:hover {
+    background: rgba(255,255,255,0.3);
+    border-color: #fff;
+}
+
+/* Upload button */
+.upload-btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.upload-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-30px);}
+    100% { opacity: 1; transform: translateY(0);}
+}

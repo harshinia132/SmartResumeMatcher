@@ -1,0 +1,33 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}Match Resume{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Match Resume to Job</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="resume">Select Resume:</label>
+            <select name="resume" id="resume" class="form-control" required>
+                <option value="" disabled selected>-- Choose Resume --</option>
+                {% for resume in resumes %}
+                    <option value="{{ resume.id }}">{{ resume.file.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="job">Select Job:</label>
+            <select name="job" id="job" class="form-control" required>
+                <option value="" disabled selected>-- Choose Job --</option>
+                {% for job in jobs %}
+                    <option value="{{ job.id }}">{{ job.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Match</button>
+    </form>
+</div>
+{% endblock %}

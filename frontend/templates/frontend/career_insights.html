@@ -1,0 +1,143 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}Career Insights{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>🎯 AI Career Insights</h2>
+
+
+    
+    <!-- Resume and Job Selection Form -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3>Select Resume and Job Role for Career Insights</h3>
+            <form method="GET" action="{% url 'career_insights' %}" class="row g-3">
+                <!-- Resume Selection -->
+                <div class="col-md-6">
+                    <label class="form-label">Select Your Resume</label>
+                    <select name="resume_id" class="form-select" required>
+                        <option value="">-- Choose a Resume --</option>
+                        {% for resume in user_resumes %}
+                            <option value="{{ resume.id }}" {% if selected_resume and selected_resume.id == resume.id %}selected{% endif %}>
+                                📄 {{ resume.file.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    {% if not user_resumes %}
+                    <small class="text-danger">No resumes found. <a href="{% url 'upload_resume' %}">Upload a resume first</a></small>
+                    {% endif %}
+                </div>
+                
+                <!-- Job Selection -->
+                <div class="col-md-6">
+                    <label class="form-label">Select Target Job</label>
+                    <select name="job_id" class="form-select" required>
+                        <option value="">-- Choose a Job Role --</option>
+                        {% for j in jobs %}
+                            <option value="{{ j.id }}" {% if job and job.id == j.id %}selected{% endif %}>
+                                {{ j.title }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Get Career Insights</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Show Selected Resume and Job -->
+    {% if job and selected_resume %}
+    <div class="alert alert-info mt-3">
+        <strong>Selected:</strong> 
+        Resume: {{ selected_resume.file.name }} | 
+        Job: {{ job.title }}
+    </div>
+    {% endif %}
+
+    {% if not user_resumes %}
+    <div class="alert alert-warning mt-4">
+        <strong>No resumes found!</strong> 
+        <a href="{% url 'upload_resume' %}" class="alert-link">Upload your resume first</a> to get personalized career insights.
+    </div>
+    
+    {% elif insights.error %}
+    <div class="alert alert-danger mt-4">
+        {{ insights.error }}
+    </div>
+    
+    {% elif insights and job and selected_resume %}
+    <!-- Career Insights Content -->
+    <div class="row mt-4">
+        <!-- Career Paths -->
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5>🚀 Career Paths for {{ job.title }}</h5>
+                    <ul class="list-group list-group-flush">
+                        {% for path in insights.career_paths %}
+                            <li class="list-group-item">{{ path }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill Gaps -->
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5>📚 Skills to Develop</h5>
+                    <ul class="list-group list-group-flush">
+                        {% for skill in insights.skill_gaps %}
+                            <li class="list-group-item">{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learning Recommendations -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5>🎓 Learning Recommendations</h5>
+            <div class="row">
+                {% for rec in insights.learning_recommendations %}
+                <div class="col-md-6">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <p class="mb-0">{{ rec }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Market Outlook & Salary -->
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5>📈 Market Outlook</h5>
+                    <p>{{ insights.market_outlook }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>💰 Salary Expectations</h5>
+                    <p>{{ insights.salary_expectations }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

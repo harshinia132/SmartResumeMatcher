@@ -1,0 +1,11 @@
+{% extends "frontend/base.html" %}
+{% block content %}
+<h2>All Jobs</h2>
+<ul>
+  {% for job in jobs %}
+  <li>{{ job.id }} - {{ job.title }}</li>
+  {% empty %}
+  <li>No jobs found.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

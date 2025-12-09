@@ -1,0 +1,226 @@
+/* Base reset and font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+}
+
+/* Body background and smooth scrolling */
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    color: #fff;
+    scroll-behavior: smooth;
+    transition: background 0.5s ease;
+}
+
+/* Container padding */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(8px);
+}
+
+.navbar a {
+    color: #e9b7b7;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #e9a2c9;
+    left: 0;
+    bottom: -3px;
+    transition: width 0.3s ease;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #5a67d8;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-success {
+    background: #48bb78;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background: #38a169;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-warning {
+    background: #ed8936;
+    color: #fff;
+}
+
+.btn-warning:hover {
+    background: #dd6b20;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Headings */
+h1, h2, h3 {
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Paragraphs */
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form elements */
+form {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin: 20px auto;
+    transition: all 0.3s ease;
+}
+
+form:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #fff;
+    background: rgba(255,255,255,0.1);
+    outline: none;
+    box-shadow: 0 0 8px rgba(255,255,255,0.3);
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    padding: 8px 0;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+ul li::before {
+    content: '✔';
+    color: #48bb78;
+    margin-right: 10px;
+}
+
+/* Hover effect on list items */
+ul li:hover {
+    transform: translateX(5px);
+}
+
+/* Buttons group */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Fancy animation for headings */
+h1, h2, h3 {
+    animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+/* Force hover effect for all navbar buttons */
+.navbar .btn:hover {
+    opacity: 0.85;           /* slightly darken */
+    transform: translateY(-1px); /* subtle lift effect */
+}
+
+/* Optional: different hover backgrounds for specific colors */
+.navbar .btn-info:hover {
+    background-color: #0dcaf0 !important;  /* brighter light blue */
+    color: #fff;
+}
+
+.navbar .btn-dark:hover {
+    background-color: #343a40 !important;  /* darker grey */
+    color: #fff;
+}
+
+.navbar .btn-secondary:hover {
+    background-color: #6c757d !important;  /* darker grey */
+    color: #fff;
+}

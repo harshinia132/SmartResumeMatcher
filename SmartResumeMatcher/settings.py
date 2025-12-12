@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ---------------------------
 # Security
 # ---------------------------
-SECRET_KEY = 'django-insecure-5a)u3()kh62w6+jwl0-*3%jqh%1*7buw^9k#8nq%v47u-^!ifo'
+SECRET_KEY = '##secret key'
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -170,4 +170,4 @@ LOGIN_REDIRECT_URL = 'upload_resume'  # after successful login
 LOGOUT_REDIRECT_URL = 'login'          # after logout
 
 # Add your Gemini API key
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyDNEnTnSMP5sXgboukQ3TFbxocGhhdNXBk')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'api key ')
